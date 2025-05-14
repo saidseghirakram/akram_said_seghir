@@ -186,7 +186,7 @@ const Contact = () => {
                       Location
                     </h4>
                     <p className="text-lg">
-                      San Francisco, CA
+                       Algeria , Medea
                     </p>
                   </div>
                 </div>

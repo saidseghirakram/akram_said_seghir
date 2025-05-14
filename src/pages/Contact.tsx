@@ -53,22 +53,22 @@ const Contact = () => {
     {
       name: 'Github',
       icon: Github,
-      url: 'https://github.com/'
+      url: 'https://github.com/saidseghirakram'
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://linkedin.com/in/'
+      url: 'https://linkedin.com/in/akram-saidseghir/'
     },
     {
       name: 'Instagram',
       icon: Instagram,
-      url: 'https://instagram.com/'
+      url: 'https://instagram.com/akram4dev'
     },
     {
       name: 'Email',
       icon: Mail,
-      url: 'mailto:hello@akram.dev'
+      url: 'akramsaidseghir26@gmail.com'
     },
   ];
 
@@ -174,10 +174,10 @@ const Contact = () => {
                       Email
                     </h4>
                     <a 
-                      href="mailto:hello@akram.dev" 
+                      href="akramsaidseghir26@gmail.com" 
                       className="text-lg hover:underline"
                     >
-                      hello@akram.dev
+                      akramsaidseghir26@gmail.com
                     </a>
                   </div>
                   

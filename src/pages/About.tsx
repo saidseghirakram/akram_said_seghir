@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
@@ -9,47 +8,83 @@ const About = () => {
   const timeline: TimelineEvent[] = [
     {
       id: '1',
-      title: 'Senior Frontend Developer',
-      organization: 'Tech Innovators Inc.',
-      location: 'San Francisco, CA',
-      period: '2021 - Present',
-      description: 'Leading the frontend development team in building scalable and performant web applications. Implementing modern frontend architecture and best practices.',
-      type: 'experience',
+      title: 'Master\'s in System Information (Software Engineering)',
+      organization: 'University Yahia Fares',
+      location: 'Médéa, Algeria',
+      period: '2023 - Present',
+      description: 'Pursuing advanced studies in software engineering and system information.',
+      type: 'education',
     },
     {
       id: '2',
-      title: 'Frontend Developer',
-      organization: 'Digital Solutions Co.',
-      location: 'New York, NY',
-      period: '2018 - 2021',
-      description: 'Developed responsive web applications and websites for various clients using React, TypeScript, and modern CSS techniques.',
+      title: 'Founder & Lead Organizer',
+      organization: 'Techverse',
+      location: 'Algeria',
+      period: '2023 - Present',
+      description: 'Established a tech club to organize workshops, mentor young developers, and foster a tech community in Algeria.',
       type: 'experience',
     },
     {
       id: '3',
-      title: 'Master of Computer Science',
-      organization: 'Tech University',
-      location: 'Boston, MA',
-      period: '2016 - 2018',
-      description: 'Specialized in web technologies and human-computer interaction. Completed thesis on improving user experience in web applications.',
-      type: 'education',
+      title: 'Freelance Developer',
+      organization: 'Self-employed',
+      location: 'Remote',
+      period: '2021 - Present',
+      description: 'Developed multiple full-stack web and mobile apps for clients using modern frameworks and tools. Focused on delivering real value and business impact.',
+      type: 'experience',
     },
     {
       id: '4',
-      title: 'Bachelor of Computer Science',
-      organization: 'State University',
-      location: 'Chicago, IL',
-      period: '2012 - 2016',
-      description: 'Graduated with honors. Focused on software engineering and web development.',
+      title: 'Bachelor\'s in System Information',
+      organization: 'University Yahia Fares',
+      location: 'Médéa, Algeria',
+      period: '2020 - 2023',
+      description: 'Graduated with a strong foundation in software systems and development.',
       type: 'education',
     },
   ];
   
   const skills = [
-    { name: 'Frontend', items: ['React', 'TypeScript', 'Next.js', 'CSS/Sass', 'Tailwind CSS'] },
-    { name: 'Backend', items: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'GraphQL'] },
-    { name: 'Mobile', items: ['React Native', 'Flutter', 'iOS/Swift', 'Android/Kotlin'] },
-    { name: 'Tools & Others', items: ['Git', 'Docker', 'Figma', 'AWS', 'CI/CD'] },
+    { 
+      name: 'Web Development', 
+      items: [
+        'Next js',
+        'React',
+        'TypeScript',
+        'Node.js',
+        'Firebase',
+        'MongoDB'
+      ] 
+    },
+    { 
+      name: 'Mobile Development', 
+      items: [
+        'React Native',
+        'iOS Development',
+        'Android Development',
+        'Cross-platform Solutions',
+        'Mobile UI/UX'
+      ] 
+    },
+    { 
+      name: 'AI/ML', 
+      items: [
+        'TensorFlow',
+        'scikit-learn',
+        'Python',
+        'Machine Learning',
+        'AI Integration'
+      ] 
+    },
+    { 
+      name: 'Tools & Others', 
+      items: [
+        'Git',
+        'Figma',
+        'Docker',
+        'RESTful APIs'
+      ] 
+    },
   ];
 
   return (
@@ -60,7 +95,7 @@ const About = () => {
           <div className="max-w-3xl">
             <AnimatedHeading 
               title="About Me"
-              subtitle="Full Stack Web & Mobile Developer with a passion for creating elegant, efficient, and user-centered digital experiences"
+              subtitle="Software Engineer | Web, Mobile & AI/ML Developer | Founder of Techverse club| Content Creator"
             />
             
             <motion.div
@@ -71,13 +106,13 @@ const About = () => {
               className="space-y-4"
             >
               <p>
-                I'm Akram, a seasoned Full Stack Developer with a strong focus on creating intuitive and performant digital experiences. With over 5 years of professional experience, I specialize in building modern web and mobile applications that are not only beautiful but also functionally robust.
+                I'm Akram Said Seghir, a passionate Software Engineer from Algeria with a strong focus on web development, mobile applications, and AI/ML solutions. With a solid background in both academic and real-world environments, I love building intelligent and impactful digital products that solve real-world problems.
               </p>
               <p>
-                My approach to development is centered around solving real problems and creating value for users. I believe in writing clean, maintainable code and staying up-to-date with the latest technologies and best practices in the ever-evolving field of software development.
+                I work with modern technologies including React, React Native, TypeScript, Node.js, Firebase, MongoDB, and also integrate machine learning models into apps using Python frameworks like TensorFlow and scikit-learn. Whether it's a business dashboard, an e-commerce platform, or a smart app powered by AI, I aim to deliver clean, maintainable, and scalable solutions.
               </p>
               <p>
-                When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community through blog posts and technical talks.
+                In 2023, I founded Techverse, a tech community that brings together developers and learners to share knowledge and grow together. I'm also a content creator, sharing tips and tutorials in Arabic to support and inspire the next generation of developers in the MENA region.
               </p>
             </motion.div>
           </div>

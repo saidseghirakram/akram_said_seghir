@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -6,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import AnimatedHeading from '@/components/ui/AnimatedHeading';
+import { FaCode, FaMobile, FaRobot } from 'react-icons/fa';
 
 const Services = () => {
   const services = [
@@ -20,7 +20,7 @@ const Services = () => {
         'Web performance optimization',
         'API development and integration'
       ],
-      icon: '💻',
+      icon: FaCode,
     },
     {
       title: 'Mobile App Development',
@@ -29,24 +29,24 @@ const Services = () => {
         'iOS app development',
         'Android app development',
         'Cross-platform app development',
-        'UI/UX design for mobile',
+        'Mobile UI design',
         'App performance optimization',
         'App store deployment'
       ],
-      icon: '📱',
+      icon: FaMobile,
     },
     {
-      title: 'UI/UX Design',
-      description: 'I design intuitive interfaces and seamless user experiences that help your products stand out and delight your users.',
+      title: 'AI/ML Solutions',
+      description: 'I develop and integrate cutting-edge AI/ML solutions to help businesses automate processes and gain valuable insights from their data.',
       features: [
-        'User research & analysis',
-        'Wireframing & prototyping',
-        'UI design & visual design',
-        'Interaction design',
-        'Design systems',
-        'User testing'
+        'Custom AI model development',
+        'RAG (Retrieval-Augmented Generation)',
+        'AI API integration',
+        'Fine-tuning LLMs',
+        'Chatbot development',
+        'AI-powered analytics'
       ],
-      icon: '🎨',
+      icon: FaRobot,
     },
   ];
 
@@ -80,7 +80,7 @@ const Services = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <p className="text-muted-foreground">
-                I offer a range of services to help bring your digital ideas to life. With a focus on creating elegant, efficient, and user-centered experiences, I work closely with clients to deliver solutions that not only meet their needs but exceed their expectations.
+                I offer a range of services to help bring your digital ideas to life. With a focus on creating elegant, efficient, and innovative solutions, I work closely with clients to deliver results that not only meet their needs but exceed their expectations.
               </p>
             </motion.div>
           </div>
@@ -101,7 +101,9 @@ const Services = () => {
                   variants={fadeInUpVariants}
                   className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
                 >
-                  <div className="text-5xl mb-6">{service.icon}</div>
+                  <div className="text-5xl mb-6">
+                    <service.icon className="w-16 h-16 text-primary" />
+                  </div>
                   <h3 className="text-2xl md:text-3xl font-medium mb-4">{service.title}</h3>
                   <p className="text-muted-foreground mb-8">{service.description}</p>
                   
@@ -126,7 +128,7 @@ const Services = () => {
                   className={`bg-secondary rounded-lg border p-8 md:p-12 order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}
                 >
                   <div className="aspect-square w-full rounded-md bg-gradient-to-br from-black to-neutral-800 flex items-center justify-center">
-                    <span className="text-8xl">{service.icon}</span>
+                    <service.icon className="w-32 h-32 text-white/80" />
                   </div>
                 </motion.div>
               </div>

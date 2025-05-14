@@ -27,7 +27,7 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
-            <h3 className="text-2xl font-medium mb-4">AKRAM<span className="text-muted-foreground">.DEV</span></h3>
+            <h3 className="text-2xl font-medium mb-4">AKRAM<span className="text-muted-foreground">4DEV</span></h3>
             <p className="text-muted-foreground mb-4">
               Full Stack Web & Mobile Developer focused on creating elegant, efficient, and user-centered digital experiences.
             </p>

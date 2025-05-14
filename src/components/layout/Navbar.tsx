@@ -35,7 +35,7 @@ const Navbar = () => {
         >
           <Link to="/" className="text-xl font-bold tracking-tighter">
             AKRAM
-            <span className="text-muted-foreground">.DEV</span>
+            <span className="text-muted-foreground">4DEV</span>
           </Link>
         </motion.div>
         

@@ -1,79 +1,14 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
 import AnimatedHeading from '@/components/ui/AnimatedHeading';
-import ProjectCard, { Project } from '@/components/ui/ProjectCard';
+import ProjectCard from '@/components/ui/ProjectCard';
 import { Button } from '@/components/ui/button';
+import { Project, projectsData, filterCategories } from '@/constants/projectsData';
 
 const Projects = () => {
-  const projectsData: Project[] = [
-    {
-      id: '1',
-      title: 'E-commerce Platform',
-      description: 'A full-stack e-commerce platform with React, Node.js, and MongoDB.',
-      tags: ['React', 'Node.js', 'MongoDB', 'Express'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://example.com',
-      type: 'web',
-    },
-    {
-      id: '2',
-      title: 'Travel Companion App',
-      description: 'A mobile app for travelers to plan trips, find recommendations and connect with other travelers.',
-      tags: ['React Native', 'Firebase', 'Google Maps API'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://example.com',
-      type: 'mobile',
-    },
-    {
-      id: '3',
-      title: 'Portfolio Design System',
-      description: 'A customizable portfolio template built with design systems principles.',
-      tags: ['Figma', 'React', 'Storybook', 'Design Systems'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://example.com',
-      type: 'design',
-    },
-    {
-      id: '4',
-      title: 'Task Management Dashboard',
-      description: 'An intuitive dashboard for managing tasks and projects with drag and drop functionality.',
-      tags: ['Vue.js', 'Vuex', 'Firebase', 'TailwindCSS'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://example.com',
-      type: 'web',
-    },
-    {
-      id: '5',
-      title: 'Fitness Tracker',
-      description: 'A mobile application to track workouts, nutrition, and fitness progress.',
-      tags: ['Flutter', 'Firebase', 'Google Fit API'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://example.com',
-      type: 'mobile',
-    },
-    {
-      id: '6',
-      title: 'Open Source UI Component Library',
-      description: 'A collection of reusable UI components built with React and TypeScript.',
-      tags: ['React', 'TypeScript', 'Storybook', 'Jest'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://example.com',
-      type: 'open-source',
-    },
-  ];
-  
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(projectsData);
-  
-  const filterOptions = [
-    { value: 'all', label: 'All' },
-    { value: 'web', label: 'Web' },
-    { value: 'mobile', label: 'Mobile' },
-    { value: 'design', label: 'Design' },
-    { value: 'open-source', label: 'Open Source' },
-  ];
   
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
@@ -81,7 +16,9 @@ const Projects = () => {
     if (filter === 'all') {
       setFilteredProjects(projectsData);
     } else {
-      setFilteredProjects(projectsData.filter(project => project.type === filter));
+      setFilteredProjects(projectsData.filter(project => 
+        project.type.toLowerCase() === filter.toLowerCase()
+      ));
     }
   };
 
@@ -91,12 +28,12 @@ const Projects = () => {
         <div className="container mx-auto">
           <AnimatedHeading 
             title="Projects"
-            subtitle="A collection of my work across web, mobile, and design"
+            subtitle="A collection of my work across web, mobile, and AI"
           />
           
           {/* Filter */}
           <div className="flex flex-wrap gap-2 mb-16">
-            {filterOptions.map((option) => (
+            {filterCategories.map((option) => (
               <Button
                 key={option.value}
                 variant={activeFilter === option.value ? "default" : "outline"}

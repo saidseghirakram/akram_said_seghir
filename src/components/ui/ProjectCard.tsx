@@ -1,20 +1,9 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ArrowRight, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tags: string[];
-  image?: string;
-  githubUrl?: string;
-  liveUrl?: string;
-  type: 'web' | 'mobile' | 'design' | 'open-source';
-}
+import { Project } from '@/constants/projectsData';
 
 interface ProjectCardProps {
   project: Project;
@@ -137,7 +126,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           to={`/projects/${project.id}`}
           className="flex items-center text-sm font-medium group relative"
         >
-          <span className="mr-2">View Project</span>
+          <span className="mr-2">View Details</span>
           <motion.div
             className="relative"
             animate={{ x: isHovered ? 5 : 0 }}

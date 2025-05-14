@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import AnimatedHeading from '@/components/ui/AnimatedHeading';
 import ProjectCard from '@/components/ui/ProjectCard';
+import { projectsData } from '@/constants/projectsData';
 import { 
   Carousel,
   CarouselContent,
@@ -13,36 +14,6 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel';
-
-const projects = [
-  {
-    id: '1',
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce platform with React, Node.js, and MongoDB.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Express'],
-    githubUrl: 'https://github.com/',
-    liveUrl: 'https://example.com',
-    type: 'web' as const,
-  },
-  {
-    id: '2',
-    title: 'Travel Companion App',
-    description: 'A mobile app for travelers to plan trips, find recommendations and connect with other travelers.',
-    tags: ['React Native', 'Firebase', 'Google Maps API'],
-    githubUrl: 'https://github.com/',
-    liveUrl: 'https://example.com',
-    type: 'mobile' as const,
-  },
-  {
-    id: '3',
-    title: 'Portfolio Design System',
-    description: 'A customizable portfolio template built with design systems principles.',
-    tags: ['Figma', 'React', 'Storybook', 'Design Systems'],
-    githubUrl: 'https://github.com/',
-    liveUrl: 'https://example.com',
-    type: 'design' as const,
-  },
-];
 
 const services = [
   {
@@ -95,6 +66,11 @@ const skills = [
   { name: 'Database', items: ['MongoDB', 'PostgreSQL', 'Firebase', 'Supabase'] },
 ];
 
+const truncateDescription = (description: string, maxLength: number = 150) => {
+  if (description.length <= maxLength) return description;
+  return description.slice(0, maxLength).trim() + '...';
+};
+
 const TypewriterText = () => {
   const words = ["Web Apps.", "Mobile Apps.", "ML Models.", "Digital Experiences."];
   const [currentWordIndex, setCurrentWordIndex] = React.useState(0);
@@ -134,6 +110,9 @@ const TypewriterText = () => {
 };
 
 const Index = () => {
+  // Get the first 3 projects for the featured section
+  const featuredProjects = projectsData.slice(0, 3);
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -228,12 +207,19 @@ const Index = () => {
         <div className="container mx-auto">
           <AnimatedHeading 
             title="Featured Projects"
-            subtitle="A selection of my recent work across web, mobile, and design"
+            subtitle="A selection of my recent work across web, mobile, and AI"
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+            {featuredProjects.map((project, index) => (
+              <ProjectCard 
+                key={project.id} 
+                project={{
+                  ...project,
+                  description: truncateDescription(project.description)
+                }} 
+                index={index}
+              />
             ))}
           </div>
           

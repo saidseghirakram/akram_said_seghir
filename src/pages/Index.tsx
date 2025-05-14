@@ -124,7 +124,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Hi, I'm Akram — a Software Engineer Web & Mobile Developer
+            Hi, I'm Akram — <br /> a Software Engineer 
           </motion.h1>
           
           <motion.h2 

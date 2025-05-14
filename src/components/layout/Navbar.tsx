@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
@@ -16,6 +15,7 @@ const navLinks = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -97,7 +97,14 @@ const Navbar = () => {
                   <Link 
                     to={link.path}
                     className="block py-2 text-lg font-medium"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMenuOpen(false);
+                      window.scrollTo(0, 0);
+                      setTimeout(() => {
+                        navigate(link.path);
+                      }, 10);
+                    }}
                   >
                     {link.name}
                   </Link>

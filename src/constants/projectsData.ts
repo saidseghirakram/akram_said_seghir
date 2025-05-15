@@ -18,11 +18,11 @@ export const filterCategories = [
 export const projectsData: Project[] = [
   {
     id: '1',
-    title: 'DEVFEST MEDEA 23',
-    description: "DevFest Medea 23 is the official website for GDG Medea's largest annual tech event, showcasing everything attendees need to know in a sleek, modern design. The site features a dynamic countdown, engaging highlights from past events, speaker profiles, and a clear time map of all sessions over the three-day festival. With content from tech leaders, inspiring talks, and a strong community vibe, the website invites developers, students, and professionals to join a collaborative environment focused on learning, innovation, and networking. Built with visual storytelling and easy navigation, it's the ultimate hub for anyone excited about technology and community-driven growth.",
-    tags: ['React', 'Tailwind Css', 'Framer Motion'],
-    githubUrl: 'https://github.com/saidseghirakram/finale_devfest_website',
-    liveUrl: 'https://devfest23medea.vercel.app/',
+    title: 'ElQuran',
+    description:' ElQuran Reader is a modern web application offering a complete Quran reading experience. It includes all 114 Surahs with elegant Arabic typography, multiple audio recitations from renowned Qaris (selectable by the user), verse-by-verse translations in multiple languages, advanced search and navigation, and a clean, responsive interface with a fixed emerald-themed design. The app ensures accurate, real-time access to Quranic content through efficient data synchronization.'
+    ,tags: ['React', 'Tailwind Css', 'Framer Motion'],
+    githubUrl: 'https://github.com/saidseghirakram/elQuran',
+    liveUrl: 'https://el-quran.vercel.app/',
     type: 'web'
   },
   {
@@ -50,6 +50,14 @@ export const projectsData: Project[] = [
     tags: ['Next Js', 'Typescript', 'Tailwind Css', 'Figma'],
     githubUrl: 'https://trips-fi-bladi.vercel.app/',
     liveUrl: 'https://trips-fi-bladi.vercel.app/',
+    type: 'web'
+  } ,{
+    id: '5',
+    title: 'DEVFEST MEDEA 23',
+    description: "DevFest Medea 23 is the official website for GDG Medea's largest annual tech event, showcasing everything attendees need to know in a sleek, modern design. The site features a dynamic countdown, engaging highlights from past events, speaker profiles, and a clear time map of all sessions over the three-day festival. With content from tech leaders, inspiring talks, and a strong community vibe, the website invites developers, students, and professionals to join a collaborative environment focused on learning, innovation, and networking. Built with visual storytelling and easy navigation, it's the ultimate hub for anyone excited about technology and community-driven growth.",
+    tags: ['React', 'Tailwind Css', 'Framer Motion'],
+    githubUrl: 'https://github.com/saidseghirakram/finale_devfest_website',
+    liveUrl: 'https://devfest23medea.vercel.app/',
     type: 'web'
   }
 ]; 

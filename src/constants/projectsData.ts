@@ -18,7 +18,7 @@ export const filterCategories = [
 export const projectsData: Project[] = [
   {
     id: '1',
-    title: 'ElQuran',
+    title: 'ElQuran website',
     description:' ElQuran Reader is a modern web application offering a complete Quran reading experience. It includes all 114 Surahs with elegant Arabic typography, multiple audio recitations from renowned Qaris (selectable by the user), verse-by-verse translations in multiple languages, advanced search and navigation, and a clean, responsive interface with a fixed emerald-themed design. The app ensures accurate, real-time access to Quranic content through efficient data synchronization.'
     ,tags: ['React', 'Tailwind Css', 'Framer Motion'],
     githubUrl: 'https://github.com/saidseghirakram/elQuran',

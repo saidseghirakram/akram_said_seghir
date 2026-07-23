@@ -89,7 +89,7 @@ export function ProcessMap() {
             {/* Connecting SVG line drawn behind cards */}
             <svg
               aria-hidden
-              className="pointer-events-none absolute left-0 right-0 top-1/2 h-24 w-[220%] -translate-y-1/2"
+              className="pointer-events-none absolute left-0 right-0 top-1/2 -z-10 h-24 w-[220%] -translate-y-1/2"
               viewBox="0 0 2200 100"
               preserveAspectRatio="none"
             >

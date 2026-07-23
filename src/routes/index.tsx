@@ -11,6 +11,7 @@ import { ProjectReel } from "@/components/ProjectReel";
 import { SkillsCloud } from "@/components/SkillsCloud";
 import { Testimonials } from "@/components/Testimonials";
 import { Faq } from "@/components/Faq";
+import { ProcessMap } from "@/components/ProcessMap";
 
 export const Route = createFileRoute("/")({
   component: Home,

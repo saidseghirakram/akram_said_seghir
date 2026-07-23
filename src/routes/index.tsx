@@ -324,28 +324,10 @@ function Home() {
               I don't only build software. I explore problems, validate ideas, and create technology solutions.
             </p>
           </Reveal>
+        </div>
 
-          <div className="relative mt-20">
-            <div className="absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-[color:var(--purple)] to-transparent md:block" />
-            <div className="grid gap-10 md:grid-cols-4">
-              {["Idea", "Experiment", "MVP", "Future Product"].map((step, i) => (
-                <Reveal key={step} delay={i * 0.12}>
-                  <div className="text-center md:text-left">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-[color:var(--purple-deep)] bg-[color:var(--cream)] font-mono text-sm text-[color:var(--purple-deep)] md:mx-0">
-                      0{i + 1}
-                    </div>
-                    <h3 className="mt-6 font-display text-2xl">{step}</h3>
-                    <p className="mt-2 text-sm text-[color:var(--warmgray)]">
-                      {["Spotting a real problem worth solving.",
-                        "Rapid prototypes and honest signal.",
-                        "Shipping the smallest useful version.",
-                        "Scaling into a real business."][i]}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
+        <div className="mt-12">
+          <ProcessMap />
         </div>
       </section>
 

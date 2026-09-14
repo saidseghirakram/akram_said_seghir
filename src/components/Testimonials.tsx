@@ -3,19 +3,29 @@ import { AnimatePresence, motion } from "motion/react";
 
 const QUOTES = [
   {
-    q: "Akram doesn't just write code — he thinks like a product owner. He shipped our MVP in weeks and it still feels premium months later.",
-    name: "Startup Founder",
-    role: "Travel Tech · Algiers",
+    q: "Akram delivered our project ahead of schedule and exceeded all expectations. His technical expertise and communication made the development process seamless.",
+    name: "Alex Johnson",
+    role: "CTO at TechStart",
   },
   {
-    q: "Rare combination of engineering rigor and design sensitivity. Every detail felt intentional.",
-    name: "Product Lead",
-    role: "SaaS Client",
+    q: "Working with Akram was a game-changer for our product. His ability to translate complex requirements into elegant solutions is remarkable.",
+    name: "Sarah Williams",
+    role: "Founder, DesignHub",
   },
   {
-    q: "Led our frontend from zero to a real production platform. Calm, precise, fast.",
-    name: "Engineering Manager",
-    role: "Fennec Booking",
+    q: "I've worked with many developers, but Akram stands out for his attention to detail and problem-solving skills. Highly recommended!",
+    name: "Michael Chen",
+    role: "Product Manager, InnoTech",
+  },
+  {
+    q: "Akram's work on our platform was exceptional. He brings both technical skill and creative vision to every project.",
+    name: "Emily Rodriguez",
+    role: "CEO, WebSolutions",
+  },
+  {
+    q: "The website Akram built for us has significantly increased our conversion rates. His understanding of both design and functionality is impressive.",
+    name: "David Park",
+    role: "Marketing Director, GrowthLabs",
   },
 ];
 

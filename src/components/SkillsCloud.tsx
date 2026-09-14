@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
 
 const GROUPS: { label: string; items: string[] }[] = [
-  { label: "Frontend", items: ["React.js", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Ant Design", "Material UI"] },
-  { label: "Backend", items: ["Node.js", "Express", "MongoDB", "SQL", "Firebase"] },
-  { label: "Mobile", items: ["React Native"] },
-  { label: "Tools", items: ["Git", "GitHub", "Vercel", "Docker"] },
+  { label: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "Framer Motion"] },
+  { label: "Backend", items: ["Node.js", "Express", "REST API", "MongoDB", "PostgreSQL", "Firebase", "Supabase"] },
+  { label: "Mobile", items: ["React Native", "Expo", "Cross-platform", "Mobile UI/UX"] },
+  { label: "AI/ML", items: ["TensorFlow", "scikit-learn", "Python", "LLM Integration"] },
+  { label: "Tools", items: ["Git", "GitHub", "Docker", "Figma", "Vercel"] },
   { label: "Concepts", items: ["System Architecture", "API Design", "Product Development", "UI Engineering"] },
 ];
 

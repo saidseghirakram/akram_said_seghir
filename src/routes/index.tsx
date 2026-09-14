@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowRight, ArrowUpRight, ArrowUp, Instagram, Linkedin, Youtube, Github, Sparkles, Trophy } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ArrowUp, Instagram, Linkedin, Youtube, Github, Sparkles, Trophy, Mail } from "lucide-react";
 import { Grain } from "@/components/Grain";
 import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Software Engineer & Frontend Team Leader from Algeria. Building scalable products, startups, and technology experiences under Akram4Dev.",
+          "Software Engineer, Web, Mobile & AI/ML Developer from Algeria. Founder of Techverse. Building scalable products and technology experiences under Akram4Dev.",
       },
       { property: "og:title", content: "Akram4Dev — Software Engineer & Product Builder" },
       {
@@ -35,6 +35,7 @@ export const Route = createFileRoute("/")({
 const SERVICES = [
   "Web Applications",
   "Mobile Applications",
+  "AI/ML Solutions",
   "SaaS Products",
   "Startup MVP Development",
   "Technology Consulting",
@@ -42,24 +43,24 @@ const SERVICES = [
 
 const TIMELINE = [
   {
-    date: "July 2026",
-    label: "Software Engineer",
-    body: "Transitioned into a full-time Software Engineer role, building on years of freelance and product experience.",
+    date: "2023 — 2025",
+    label: "Master's in System Information (Software Engineering)",
+    body: "Pursuing advanced studies in software engineering and system information at University Yahia Fares, Médéa, Algeria.",
   },
   {
-    date: "October 2026 — Present",
-    label: "Frontend Team Leader · Fennec Booking",
-    body: "Leading frontend engineering, architecture decisions, UI development, and product improvements for a travel technology company.",
+    date: "2023",
+    label: "Founder & Lead Organizer — Techverse",
+    body: "Established a tech club to organize workshops, mentor young developers, and foster a tech community in Algeria.",
   },
   {
-    date: "2022 — Present",
-    label: "Freelance Software Engineer",
-    body: "Building websites, applications, dashboards, and custom software solutions for businesses and startups.",
+    date: "2021 — Present",
+    label: "Freelancer",
+    body: "Developed multiple full-stack web and mobile apps for clients using modern frameworks and tools. Focused on delivering real value and business impact.",
   },
   {
-    date: "July 2027",
-    label: "Official Auto-Entrepreneur — Algeria",
-    body: "Formalized as an independent auto-entrepreneur, structuring long-term client and startup work.",
+    date: "2020 — 2023",
+    label: "Bachelor's in System Information",
+    body: "Graduated with a strong foundation in software systems and development at University Yahia Fares, Médéa, Algeria.",
   },
 ];
 
@@ -76,65 +77,71 @@ function Home() {
         <div className="pointer-events-none absolute left-[-8%] bottom-[-10%] h-[360px] w-[360px] purple-glow opacity-40" />
 
         <div className="mx-auto max-w-7xl px-6">
-          <Reveal>
-            <div className="eyebrow flex items-center gap-2">
-              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--purple)]" />
-              (Available for Collaborations)
+          <div className="grid items-center gap-12">
+            <div>
+              <Reveal>
+                <div className="eyebrow flex items-center gap-2">
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--purple)]" />
+                  (Available for Collaborations)
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <h1 className="display-h mt-8 max-w-6xl text-[clamp(2.6rem,7vw,6.2rem)]">
+                  <RoleCycle />
+                  <br />
+                  building digital products that turn{" "}
+                  <span className="italic text-[color:var(--warmgray)]">ideas</span> into reality.
+                </h1>
+              </Reveal>
+
+              <Reveal delay={0.25}>
+                <p className="mt-10 max-w-2xl text-lg text-[color:var(--warmgray)] md:text-xl">
+                  I'm Akram Said Seghir, a Software Engineer from Algeria passionate about building scalable applications,
+                  innovative solutions, and technology products. Founder of Techverse.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.35}>
+                <div className="mt-12 flex flex-wrap items-center gap-4">
+                  <motion.a
+                    href="#contact"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ y: 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="btn-primary btn-primary-hover"
+                  >
+                    Let's Work Together <ArrowRight className="h-4 w-4" />
+                  </motion.a>
+                  <motion.a
+                    href="#work"
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.4 }}
+                    className="btn-outline btn-outline-hover"
+                  >
+                    View My Work <ArrowUpRight className="h-4 w-4" />
+                  </motion.a>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
 
-          <Reveal delay={0.1}>
-            <h1 className="display-h mt-8 max-w-6xl text-[clamp(2.6rem,7vw,6.2rem)]">
-              <RoleCycle />
-              <br />
-              building digital products that turn{" "}
-              <span className="italic text-[color:var(--warmgray)]">ideas</span> into reality.
-            </h1>
-          </Reveal>
 
-          <Reveal delay={0.25}>
-            <p className="mt-10 max-w-2xl text-lg text-[color:var(--warmgray)] md:text-xl">
-              I'm Akram Said Seghir, a Software Engineer passionate about building scalable applications,
-              innovative solutions, and technology products.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.35}>
-            <div className="mt-12 flex flex-wrap items-center gap-4">
-              <motion.a
-                href="#contact"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="btn-primary btn-primary-hover"
-              >
-                Let's Work Together <ArrowRight className="h-4 w-4" />
-              </motion.a>
-              <motion.a
-                href="#work"
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.4 }}
-                className="btn-outline btn-outline-hover"
-              >
-                View My Work <ArrowUpRight className="h-4 w-4" />
-              </motion.a>
-            </div>
-          </Reveal>
+          </div>
 
           {/* Stats */}
           <Reveal delay={0.5}>
             <div className="mt-24 grid gap-10 border-t border-[color:var(--border)] pt-10 md:grid-cols-3">
               {[
-                { n: <CountUp to={2022} />, l: "Freelancing as a software engineer" },
-                { n: <CountUp to={2026} />, l: "Became a full-time Software Engineer" },
+                { n: <CountUp to={2021} />, l: "Started freelancing as a software engineer" },
+                { n: <CountUp to={2023} />, l: "Founded Techverse developer community" },
                 {
                   n: (
                     <span className="inline-flex items-baseline gap-2">
                       <Trophy className="h-8 w-8 -translate-y-1" />
-                      2<sup className="text-2xl">nd</sup>
+                      5+
                     </span>
                   ),
-                  l: "Place · Travel Hackathon 2026",
+                  l: "Projects shipped across web, mobile & AI",
                 },
               ].map((s, i) => (
                 <div key={i}>
@@ -160,7 +167,7 @@ function Home() {
 
       {/* ABOUT */}
       <section id="about" className="bg-[color:var(--cream-alt)] py-32">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-6xl px-6">
           <Reveal>
             <div className="eyebrow">(01 / 08) — About</div>
           </Reveal>
@@ -169,25 +176,47 @@ function Home() {
               Beyond code. <span className="italic text-[color:var(--purple-deep)]">Building solutions.</span>
             </h2>
           </Reveal>
-          <div className="mt-14 space-y-8 text-xl leading-relaxed text-[color:var(--warmgray)] md:text-2xl md:leading-[1.5]">
-            {[
-              "I'm a Software Engineer and technology entrepreneur from Algeria.",
-              "I've been freelancing since 2022, helping businesses and startups turn ideas into real digital products.",
-              "In 2026, I became a full-time Software Engineer, and I now lead frontend development at Fennec Booking, building modern travel technology experiences.",
-              "Outside engineering, I build startup ideas and create technology content under Akram4Dev.",
-            ].map((line, i) => (
-              <Reveal key={i} delay={i * 0.1} as="p">
-                {line}
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={0.4}>
-            <div className="mt-12 flex flex-wrap gap-3">
-              {["build", "lead", "ship", "share"].map((t) => (
-                <span key={t} className="chip-lilac">{t}</span>
+
+          <div className="mt-14 grid gap-12 md:grid-cols-[1fr_auto] md:items-start md:gap-16">
+            <div className="space-y-8 text-xl leading-relaxed text-[color:var(--warmgray)] md:text-2xl md:leading-[1.5]">
+              {[
+                "I'm Akram Said Seghir, a passionate Software Engineer from Algeria with a strong focus on web development, mobile applications, and AI/ML solutions.",
+                "I work with modern technologies including React, React Native, TypeScript, Node.js, Firebase, MongoDB, and also integrate machine learning models using Python frameworks like TensorFlow and scikit-learn.",
+                "In 2023, I founded Techverse, a tech community that brings together developers and learners to share knowledge and grow together.",
+                "I'm also a content creator, sharing tips and tutorials in Arabic to support and inspire the next generation of developers in the MENA region.",
+              ].map((line, i) => (
+                <Reveal key={i} delay={i * 0.1} as="p">
+                  {line}
+                </Reveal>
               ))}
+              <Reveal delay={0.4}>
+                <div className="flex flex-wrap gap-3">
+                  {["build", "lead", "ship", "share"].map((t) => (
+                    <span key={t} className="chip-lilac">{t}</span>
+                  ))}
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
+
+            {/* About Photo */}
+            <Reveal delay={0.2}>
+              <div className="relative mx-auto md:mx-0">
+                <div className="absolute -inset-3 rounded-[1.5rem] bg-[color:var(--purple-deep)]/8 blur-xl" />
+                <div className="relative overflow-hidden rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--card)]">
+                  <img
+                    src="/myphoto.jpg"
+                    alt="Akram Said Seghir"
+                    className="h-[360px] w-[300px] object-cover md:h-[420px] md:w-[320px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--purple-deep)]/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="font-display text-lg text-white">Akram Said Seghir</div>
+                    <div className="font-mono text-xs uppercase tracking-widest text-white/70">Software Engineer</div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -217,15 +246,6 @@ function Home() {
                 </Reveal>
               ))}
             </div>
-
-            <Reveal delay={0.3}>
-              <div className="mt-14 inline-flex items-center gap-3 rounded-full border border-[color:var(--purple)] bg-[color:var(--lilac)] px-6 py-4 shadow-[0_0_40px_-10px_rgba(124,58,237,0.5)]">
-                <Trophy className="h-5 w-5 text-[color:var(--purple-deep)]" />
-                <span className="font-medium text-[color:var(--purple-deep)]">
-                  🏆 2nd Place — Travel Hackathon, 2026
-                </span>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -243,7 +263,7 @@ function Home() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-2xl text-lg text-[color:var(--warmgray)]">
-              A growing library of shipped software, from startup MVPs to production platforms.
+              A growing library of shipped software, from web platforms to mobile apps and AI-powered solutions.
             </p>
           </Reveal>
           <div className="mt-16">
@@ -282,20 +302,22 @@ function Home() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-2xl text-lg text-[color:var(--warmgray)]">
-              Through Akram4Dev, I create content about software engineering, AI, startups, and technology.
+              Through Akram4Dev, I create content about software engineering, AI, startups, and technology — sharing tips and tutorials in Arabic to inspire developers across the MENA region.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-12 flex flex-wrap gap-4">
               {[
-                { i: Instagram, l: "Instagram" },
-                { i: Linkedin, l: "LinkedIn" },
-                { i: Youtube, l: "YouTube" },
-                { i: Sparkles, l: "TikTok" },
-              ].map(({ i: Icon, l }) => (
+                { i: Instagram, l: "Instagram", href: "https://instagram.com/akram4dev" },
+                { i: Linkedin, l: "LinkedIn", href: "https://linkedin.com/in/akram-saidseghir/" },
+                { i: Youtube, l: "YouTube", href: "#" },
+                { i: Sparkles, l: "TikTok", href: "#" },
+              ].map(({ i: Icon, l, href }) => (
                 <a
                   key={l}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="card-cream group inline-flex items-center gap-3 px-6 py-4 transition-transform hover:-translate-y-1"
                 >
                   <Icon className="h-5 w-5 text-[color:var(--purple-deep)]" />
@@ -414,7 +436,7 @@ function Home() {
           <Reveal delay={0.35}>
             <div className="mt-12 flex flex-wrap justify-center gap-4">
               <motion.a
-                href="mailto:hello@akram4dev.com"
+                href="mailto:akramsaidseghir26@gmail.com"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.4 }}
                 className="btn-primary btn-primary-hover"
@@ -422,7 +444,7 @@ function Home() {
                 Let's Work Together <ArrowRight className="h-4 w-4" />
               </motion.a>
               <motion.a
-                href="mailto:hello@akram4dev.com"
+                href="mailto:akramsaidseghir26@gmail.com"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.4 }}
                 className="btn-outline btn-outline-hover"
@@ -442,7 +464,7 @@ function Home() {
               Akram<span className="text-[color:var(--purple-deep)]">4</span>Dev
             </div>
             <p className="mt-4 max-w-xs text-sm text-[color:var(--warmgray)]">
-              Software Engineer & Product Builder based in Algeria.
+              Software Engineer & Product Builder based in Algeria, Medea.
             </p>
             <div className="mt-6 inline-flex items-center gap-2 text-sm text-[color:var(--warmgray)]">
               <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[color:var(--purple)]" />
@@ -456,6 +478,7 @@ function Home() {
                 ["About", "#about"],
                 ["Experience", "#experience"],
                 ["Work", "#work"],
+                ["Skills", "#skills"],
                 ["Services", "#services"],
                 ["FAQ", "#faq"],
               ].map(([l, h]) => (
@@ -466,10 +489,18 @@ function Home() {
           <div>
             <div className="eyebrow mb-4">Elsewhere</div>
             <div className="flex flex-wrap gap-3">
-              {[Instagram, Linkedin, Youtube, Github, Sparkles].map((Icon, i) => (
+              {[
+                { Icon: Github, href: "https://github.com/saidseghirakram" },
+                { Icon: Linkedin, href: "https://linkedin.com/in/akram-saidseghir/" },
+                { Icon: Instagram, href: "https://instagram.com/akram4dev" },
+                { Icon: Youtube, href: "#" },
+                { Icon: Sparkles, href: "#" },
+              ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-10 w-10 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--warmgray)] transition-colors hover:border-[color:var(--purple)] hover:text-[color:var(--purple-deep)]"
                 >
                   <Icon className="h-4 w-4" />
@@ -478,11 +509,14 @@ function Home() {
             </div>
           </div>
           <div>
-            <div className="eyebrow mb-4">Curious?</div>
-            <a href="#" className="group inline-flex items-center gap-2 font-display text-lg text-[color:var(--purple-deep)]">
-              Ask AI about Akram4Dev
-              <Sparkles className="h-4 w-4 transition-transform group-hover:rotate-12" />
-            </a>
+            <div className="eyebrow mb-4">Contact</div>
+            <div className="space-y-3">
+              <a href="mailto:akramsaidseghir26@gmail.com" className="flex items-center gap-2 text-sm text-[color:var(--warmgray)] hover:text-[color:var(--purple-deep)]">
+                <Mail className="h-4 w-4" />
+                akramsaidseghir26@gmail.com
+              </a>
+              <p className="text-sm text-[color:var(--warmgray)]">Algeria, Medea</p>
+            </div>
           </div>
         </div>
         <div className="border-t border-[color:var(--border)]">

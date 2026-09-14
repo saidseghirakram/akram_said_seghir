@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-const ROLES = ["Software Engineer", "Product Builder", "Technology Creator"];
+const ROLES = ["Software Engineer", "Product Builder", "Techverse Founder", "Technology Creator"];
 
 export function RoleCycle() {
   const [i, setI] = useState(0);

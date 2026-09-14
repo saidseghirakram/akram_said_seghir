@@ -5,19 +5,19 @@ import { Plus } from "lucide-react";
 const ITEMS = [
   {
     q: "What kind of projects do you take on?",
-    a: "Web applications, mobile apps, SaaS products, dashboards, and startup MVPs. I focus on scalable, well-architected products for businesses and founders who care about quality.",
+    a: "Web applications, mobile apps, AI/ML solutions, SaaS products, dashboards, and startup MVPs. I focus on scalable, well-architected products for businesses and founders who care about quality.",
   },
   {
-    q: "How do you usually work with a client or team?",
-    a: "Async-first, transparent, and product-minded. I lead frontend architecture, ship in tight iterations, and communicate clearly through Notion, Linear, or whatever your team already uses.",
-  },
-  {
-    q: "What's your typical availability?",
-    a: "I lead frontend at Fennec Booking full-time and take on select freelance and startup collaborations outside of that. Best to reach out early — my slots book weeks ahead.",
+    q: "What technologies do you work with?",
+    a: "I work with React, Next.js, TypeScript, Node.js, React Native, MongoDB, PostgreSQL, Firebase, Supabase, and AI/ML frameworks like TensorFlow and scikit-learn. I also integrate LLMs into applications.",
   },
   {
     q: "Do you work on startups pre-funding?",
-    a: "Yes — I love pre-funding startups. Depending on the idea, I can take equity, deferred, or hybrid arrangements. Let's talk about the problem first, terms second.",
+    a: "Yes — I love pre-funding startups. As the founder of Techverse, I'm passionate about helping developers and entrepreneurs bring their ideas to life. Let's talk about the problem first, terms second.",
+  },
+  {
+    q: "Are you available for freelance work?",
+    a: "Yes! I'm available for freelance projects and exciting opportunities. I've been freelancing since 2021, building web and mobile apps for clients worldwide. Feel free to reach out.",
   },
 ];
 

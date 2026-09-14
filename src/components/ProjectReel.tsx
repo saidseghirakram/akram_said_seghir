@@ -1,97 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, LayoutGroup } from "motion/react";
-import { ArrowUpRight, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowUpRight, Github, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { PROJECTS, type Tab, type Project } from "@/data/projects";
+import { MockScreen } from "@/components/MockScreen";
 
-type Tab = "problem" | "solution" | "impact";
-
-type Project = {
-  id: string;
-  n: string;
-  title: string;
-  category: "Web Application" | "Mobile Application" | "SaaS" | "Dashboard" | "UI Experiment";
-  problem: string;
-  solution: string;
-  stack: string[];
-  impact: string;
-  live?: string;
-  github?: string;
-  gradient: string;
-};
-
-const PROJECTS: Project[] = [
-  {
-    id: "fennec",
-    n: "01",
-    title: "Fennec Booking — Travel Platform",
-    category: "Web Application",
-    problem: "Fragmented travel booking experiences across desktop and mobile with slow, dated UI.",
-    solution: "Rebuilt the frontend architecture with a modern React/Next.js stack, design system, and performant booking flows.",
-    stack: ["Next.js", "TypeScript", "Tailwind", "Node.js"],
-    impact: "Leading frontend for a production travel technology company serving real customers.",
-    live: "#",
-    gradient: "linear-gradient(135deg,#7c3aed 0%,#a855f7 50%,#e9d8fd 100%)",
-  },
-  {
-    id: "hackathon",
-    n: "02",
-    title: "Travel Hackathon — 2nd Place Product",
-    category: "Web Application",
-    problem: "Design and ship a travel product in 48 hours competing against national teams.",
-    solution: "Led product + frontend, built end-to-end MVP with a bookable itinerary flow and clean UI in under two days.",
-    stack: ["React", "TypeScript", "Tailwind", "Firebase"],
-    impact: "🏆 2nd place — Travel Hackathon 2026.",
-    gradient: "linear-gradient(135deg,#5b21b6 0%,#7c3aed 60%,#f6f1e9 100%)",
-  },
-  {
-    id: "saas-dash",
-    n: "03",
-    title: "Analytics SaaS Dashboard",
-    category: "SaaS",
-    problem: "Small businesses lacked a clean, unified view of their operational metrics.",
-    solution: "Built a multi-tenant SaaS dashboard with real-time charts, role-based access, and Stripe billing.",
-    stack: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
-    impact: "Cut client reporting time from hours to seconds.",
-    live: "#",
-    github: "#",
-    gradient: "linear-gradient(135deg,#a855f7 0%,#e9d8fd 100%)",
-  },
-  {
-    id: "mobile-app",
-    n: "04",
-    title: "Cross-Platform Mobile App",
-    category: "Mobile Application",
-    problem: "Client needed a single codebase mobile app shipping to both iOS and Android quickly.",
-    solution: "Delivered a React Native app with offline-first sync, push notifications, and native module integrations.",
-    stack: ["React Native", "TypeScript", "Firebase"],
-    impact: "Shipped to both stores in under 6 weeks.",
-    github: "#",
-    gradient: "linear-gradient(135deg,#5b21b6 0%,#a855f7 100%)",
-  },
-  {
-    id: "ops-dash",
-    n: "05",
-    title: "Internal Operations Dashboard",
-    category: "Dashboard",
-    problem: "Operations team was juggling five tools to run their day.",
-    solution: "Consolidated into a single internal dashboard with automations, filters, and export-ready reports.",
-    stack: ["React", "Node.js", "SQL"],
-    impact: "Removed 4 SaaS tools from the stack.",
-    gradient: "linear-gradient(135deg,#7c3aed 0%,#efe8da 100%)",
-  },
-  {
-    id: "ui-lab",
-    n: "06",
-    title: "Motion & UI Experiments",
-    category: "UI Experiment",
-    problem: "Push the ceiling on what a browser interface can feel like.",
-    solution: "Ongoing lab of scroll-driven, magnetic, and physics-based UI prototypes shared with the community.",
-    stack: ["React", "Motion", "TypeScript"],
-    impact: "Featured on Akram4Dev socials to educate developers.",
-    gradient: "linear-gradient(135deg,#e9d8fd 0%,#7c3aed 100%)",
-  },
-];
-
-const FILTERS = ["All", "Web Application", "Mobile Application", "SaaS", "Dashboard", "UI Experiment"] as const;
+const FILTERS = ["All", "Web Application", "Mobile Application", "SaaS"] as const;
 
 export function ProjectReel() {
   const [f, setF] = useState<(typeof FILTERS)[number]>("All");
@@ -118,14 +32,14 @@ export function ProjectReel() {
     <div>
       {/* Filters — morphing pill */}
       <LayoutGroup id="project-filters">
-        <div className="mb-10 flex flex-wrap gap-1 rounded-full border border-[color:var(--border)] p-1 w-fit">
+        <div className="mb-8 flex flex-wrap gap-1 rounded-full border border-[color:var(--border)] p-1 w-fit md:mb-10">
           {FILTERS.map((label) => {
             const active = f === label;
             return (
               <button
                 key={label}
                 onClick={() => setFilter(label)}
-                className="relative rounded-full px-4 py-2 text-sm transition-colors"
+                className="relative rounded-full px-3 py-1.5 text-xs transition-colors md:px-4 md:py-2 md:text-sm"
               >
                 {active && (
                   <motion.span
@@ -136,7 +50,9 @@ export function ProjectReel() {
                 )}
                 <span
                   className={`relative z-10 ${
-                    active ? "text-[color:var(--cream)]" : "text-[color:var(--warmgray)] hover:text-[color:var(--purple-deep)]"
+                    active
+                      ? "text-[color:var(--cream)]"
+                      : "text-[color:var(--warmgray)] hover:text-[color:var(--purple-deep)]"
                   }`}
                 >
                   {label}
@@ -148,34 +64,34 @@ export function ProjectReel() {
       </LayoutGroup>
 
       {/* Controls */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between md:mb-6">
         <div className="font-mono text-xs text-[color:var(--warmgray)]">
           {items.length === 0 ? "00" : String(safeIdx + 1).padStart(2, "0")}
           <span className="mx-2 opacity-40">/</span>
           {String(items.length).padStart(2, "0")}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 md:gap-2">
           <button
             onClick={() => go(-1)}
             disabled={items.length < 2}
             aria-label="Previous project"
-            className="grid h-11 w-11 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--ink)] transition-colors hover:border-[color:var(--purple)] hover:text-[color:var(--purple-deep)] disabled:opacity-30"
+            className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--ink)] transition-colors hover:border-[color:var(--purple)] hover:text-[color:var(--purple-deep)] disabled:opacity-30 md:h-11 md:w-11"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
           </button>
           <button
             onClick={() => go(1)}
             disabled={items.length < 2}
             aria-label="Next project"
-            className="grid h-11 w-11 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--ink)] transition-colors hover:border-[color:var(--purple)] hover:text-[color:var(--purple-deep)] disabled:opacity-30"
+            className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--ink)] transition-colors hover:border-[color:var(--purple)] hover:text-[color:var(--purple-deep)] disabled:opacity-30 md:h-11 md:w-11"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
           </button>
         </div>
       </div>
 
       {/* Spread */}
-      <div className="relative min-h-[640px] overflow-hidden">
+      <div className="relative min-h-[480px] md:min-h-[640px] overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           {current && <Spread key={current.id + f} p={current} />}
         </AnimatePresence>
@@ -214,11 +130,11 @@ function Spread({ p }: { p: Project }) {
       <motion.div
         aria-hidden
         style={{ x: numX }}
-        className="pointer-events-none absolute -left-[3vw] -top-16 z-0 select-none font-display leading-[0.8] text-transparent md:-left-[4vw] md:-top-24"
+        className="pointer-events-none absolute -left-[2vw] -top-10 z-0 select-none font-display leading-[0.8] text-transparent md:-left-[4vw] md:-top-24"
         // stroke text via -webkit-text-stroke
       >
         <span
-          className="block text-[24vw] md:text-[18vw]"
+          className="block text-[20vw] md:text-[18vw]"
           style={{
             WebkitTextStroke: "1.5px rgba(91,33,182,0.18)",
             color: "transparent",
@@ -230,54 +146,77 @@ function Spread({ p }: { p: Project }) {
 
       <div className="relative z-10 grid gap-0 overflow-hidden rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--card)] md:grid-cols-5">
         {/* Parallax visual */}
-        <div className="relative min-h-[320px] overflow-hidden md:col-span-2 md:min-h-[560px]">
+        <div className="relative min-h-[200px] overflow-hidden bg-[color:var(--purple-deep)]/5 md:col-span-2 md:min-h-[560px]">
           <motion.div
-            style={{ y: panelY, background: p.gradient }}
-            className="absolute -inset-y-16 inset-x-0"
+            style={{ y: panelY }}
+            className="absolute inset-0 flex items-center justify-center"
           >
-            <div
-              className="absolute inset-0 mix-blend-overlay opacity-40"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), transparent 55%)",
-              }}
-            />
+            {p.coverImage ? (
+              p.cover.device === "mobile" ? (
+                <img
+                  src={p.coverImage}
+                  alt={p.title}
+                  loading="lazy"
+                  className="h-[320px] w-auto max-w-[62%] rounded-[1.5rem] object-contain shadow-[0_30px_80px_-30px_rgba(91,33,182,0.45)] md:h-[440px] md:max-w-[46%]"
+                />
+              ) : (
+                <img
+                  src={p.coverImage}
+                  alt={p.title}
+                  loading="lazy"
+                  className="w-[82%] max-w-[460px] rounded-xl object-contain shadow-[0_30px_80px_-30px_rgba(91,33,182,0.35)]"
+                />
+              )
+            ) : (
+              <MockScreen
+                device={p.cover.device}
+                seed={p.cover.seed}
+                accent={p.cover.accent}
+                className={
+                  p.cover.device === "mobile"
+                    ? "w-[44%] max-w-[150px] md:max-w-[190px]"
+                    : "mx-auto w-[78%] max-w-[430px]"
+                }
+              />
+            )}
           </motion.div>
-          <span className="absolute left-6 top-6 z-10 font-mono text-xs uppercase tracking-widest text-white/85">
-            ({p.n} / 06)
+          <span className="absolute left-4 top-4 z-10 font-mono text-[10px] uppercase tracking-widest text-[color:var(--purple-deep)] md:left-6 md:top-6 md:text-xs">
+            ({p.n} / {String(PROJECTS.length).padStart(2, "0")})
           </span>
-          <span className="absolute bottom-6 left-6 z-10 font-display text-3xl text-white/95">
+          <span className="absolute bottom-4 left-4 z-10 font-display text-2xl text-[color:var(--ink)] md:bottom-6 md:left-6 md:text-3xl">
             {p.category}
           </span>
         </div>
 
         {/* Content */}
-        <div className="relative p-8 md:col-span-3 md:p-14">
+        <div className="relative p-5 md:col-span-3 md:p-14">
           {/* Clip-path wipe reveal on title */}
           <motion.h3
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             animate={{ clipPath: "inset(0 0% 0 0)" }}
             transition={{ duration: 1.1, ease: [0.77, 0, 0.175, 1], delay: 0.15 }}
-            className="font-display text-[clamp(1.9rem,4vw,3.4rem)] leading-[1.05]"
+            className="font-display text-[clamp(1.4rem,4vw,3.4rem)] leading-[1.05]"
           >
             {p.title}
           </motion.h3>
 
           {/* Tabs — horizontal accordion */}
-          <div className="mt-10">
+          <div className="mt-6 md:mt-10">
             <LayoutGroup id={`tabs-${p.id}`}>
-              <div className="flex gap-1 border-b border-[color:var(--border)]">
+              <div className="flex gap-0.5 border-b border-[color:var(--border)] md:gap-1">
                 {(["problem", "solution", "impact"] as Tab[]).map((t) => {
                   const active = tab === t;
                   return (
                     <button
                       key={t}
                       onClick={() => setTab(t)}
-                      className="relative px-4 py-3 text-left"
+                      className="relative px-2.5 py-2 text-left md:px-4 md:py-3"
                     >
                       <span
                         className={`eyebrow transition-colors ${
-                          active ? "text-[color:var(--purple-deep)]" : "text-[color:var(--warmgray)]"
+                          active
+                            ? "text-[color:var(--purple-deep)]"
+                            : "text-[color:var(--warmgray)]"
                         }`}
                       >
                         {t}
@@ -293,7 +232,7 @@ function Spread({ p }: { p: Project }) {
                   );
                 })}
               </div>
-              <div className="relative mt-6 min-h-[110px]">
+              <div className="relative mt-4 min-h-[90px] md:mt-6 md:min-h-[110px]">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={tab}
@@ -301,7 +240,7 @@ function Spread({ p }: { p: Project }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    className={`text-[15px] leading-relaxed md:text-base ${
+                    className={`text-sm leading-relaxed md:text-base ${
                       tab === "impact"
                         ? "font-medium text-[color:var(--ink)]"
                         : "text-[color:var(--warmgray)]"
@@ -315,7 +254,7 @@ function Spread({ p }: { p: Project }) {
           </div>
 
           {/* Stack pills — domino stagger */}
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap gap-1.5 md:mt-8 md:gap-2">
             {p.stack.map((s, i) => (
               <motion.span
                 key={s}
@@ -333,10 +272,19 @@ function Spread({ p }: { p: Project }) {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-5">
+          <div className="mt-8 flex flex-wrap items-center gap-4 md:mt-10 md:gap-5">
+            <Link
+              to="/projects/$id"
+              params={{ id: p.id }}
+              className="btn-primary btn-primary-hover inline-flex items-center gap-1.5 text-sm"
+            >
+              View Case Study <ArrowRight className="h-4 w-4" />
+            </Link>
             {p.live && (
               <a
                 href={p.live}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--purple-deep)] hover:text-[color:var(--purple-electric)]"
               >
                 Live Demo <ArrowUpRight className="h-4 w-4" />
@@ -345,6 +293,8 @@ function Spread({ p }: { p: Project }) {
             {p.github && (
               <a
                 href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--ink)] hover:text-[color:var(--purple-deep)]"
               >
                 <Github className="h-4 w-4" /> GitHub

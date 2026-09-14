@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 
@@ -44,14 +44,29 @@ const STAGES: Stage[] = [
 export function ProcessMap() {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: wrapRef,
     offset: ["start start", "end end"],
   });
 
-  // Translate the horizontal track across the viewport
-  const x = useTransform(scrollYProgress, [0, 1], ["8%", "-72%"]);
+  const x = useTransform(scrollYProgress, [0, 1], isMobile ? ["4%", "-235%"] : ["8%", "-95%"]);
   const dashOffset = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -65,15 +80,16 @@ export function ProcessMap() {
   };
 
   return (
-    <div ref={wrapRef} className="relative" style={{ height: "320vh" }}>
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
+    <div ref={wrapRef} className="relative h-[700vh] md:h-[320vh]">
+      <div className="sticky top-0 z-10 flex h-screen flex-col justify-center">
+        <div className="overflow-hidden">
         {/* Header stays pinned */}
-        <div className="mx-auto w-full max-w-6xl px-6">
+        <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
           <div className="eyebrow">(Process)</div>
-          <h3 className="display-h mt-4 text-[clamp(1.6rem,3.4vw,2.6rem)]">
+          <h3 className="display-h mt-4 text-[clamp(1.3rem,3.4vw,2.6rem)]">
             The idea <span className="italic text-[color:var(--purple-deep)]">solidifies</span> as it moves.
           </h3>
-          <div className="mt-2 font-mono text-xs text-[color:var(--warmgray)]">
+          <div className="mt-2 font-mono text-[10px] md:text-xs text-[color:var(--warmgray)]">
             {String(active + 1).padStart(2, "0")}
             <span className="mx-2 opacity-40">/</span>
             {String(STAGES.length).padStart(2, "0")} — scroll to advance
@@ -81,10 +97,10 @@ export function ProcessMap() {
         </div>
 
         {/* Horizontal track */}
-        <div className="relative mt-10">
+        <div className="relative mt-6 md:mt-10">
           <motion.div
             style={{ x }}
-            className="flex items-stretch gap-10 pl-[8vw] pr-[8vw] will-change-transform"
+            className="flex items-stretch gap-6 pl-[4vw] pr-[4vw] md:gap-10 md:pl-[8vw] md:pr-[8vw] will-change-transform"
           >
             {/* Connecting SVG line drawn behind cards */}
             <svg
@@ -94,7 +110,7 @@ export function ProcessMap() {
               preserveAspectRatio="none"
             >
               <motion.path
-                d="M 20 50 Q 300 10 600 50 T 1200 50 T 1800 50 T 2180 50"
+                d="M 20 50 Q 300 10 600 50 T 1200 50 T 1800 50 T 2380 50"
                 stroke="var(--purple-deep)"
                 strokeWidth="1.5"
                 fill="none"
@@ -120,7 +136,7 @@ export function ProcessMap() {
                   className="relative z-10 w-[78vw] max-w-[420px] shrink-0 text-left"
                 >
                   {/* Margin note */}
-                  <div className="mb-4 h-6 font-mono text-xs text-[color:var(--warmgray)]">
+                  <div className="mb-3 h-5 font-mono text-[10px] md:mb-4 md:h-6 md:text-xs text-[color:var(--warmgray)]">
                     {isActive && (
                       <motion.span
                         initial={{ opacity: 0, x: -6 }}
@@ -139,7 +155,7 @@ export function ProcessMap() {
                     <span className="font-mono text-sm text-[color:var(--purple-deep)]">
                       {s.n}
                     </span>
-                    <h4 className="font-display text-3xl md:text-4xl">{s.title}</h4>
+                    <h4 className="font-display text-2xl md:text-4xl">{s.title}</h4>
                   </div>
                   <p className="mt-3 max-w-sm text-[color:var(--warmgray)]">{s.body}</p>
 
@@ -156,46 +172,57 @@ export function ProcessMap() {
             })}
           </motion.div>
         </div>
+        </div>
       </div>
     </div>
   );
 }
 
 function StageGlyph({ index, active }: { index: number; active: boolean }) {
-  // 0 = rough scribble circle, 3 = clean filled shape
-  const size = 88;
+  const mobileSize = 64;
+  const desktopSize = 88;
+
+  const glyphs = (size: number) => (
+    <svg viewBox="0 0 100 100" width={size} height={size}>
+      {index === 0 && (
+        <motion.path
+          d="M50 12 C 78 14, 90 38, 86 58 S 60 92, 40 86 S 10 62, 14 42 S 28 12, 50 12 Z"
+          fill="none"
+          stroke="var(--purple-deep)"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeDasharray="4 6"
+          animate={{ rotate: active ? [0, 3, -2, 0] : 0 }}
+          transition={{ duration: 4, repeat: active ? Infinity : 0, ease: "easeInOut" }}
+          style={{ transformOrigin: "50% 50%" }}
+        />
+      )}
+      {index === 1 && (
+        <>
+          <circle cx="50" cy="50" r="34" fill="none" stroke="var(--purple-deep)" strokeWidth="1.4" strokeDasharray="2 4" />
+          <circle cx="50" cy="50" r="18" fill="var(--lilac)" opacity="0.6" />
+        </>
+      )}
+      {index === 2 && (
+        <>
+          <circle cx="50" cy="50" r="36" fill="none" stroke="var(--purple-deep)" strokeWidth="1.6" />
+          <circle cx="50" cy="50" r="22" fill="var(--purple)" opacity="0.55" />
+        </>
+      )}
+      {index === 3 && (
+        <circle cx="50" cy="50" r="38" fill="var(--purple-deep)" />
+      )}
+    </svg>
+  );
+
   return (
-    <div className="relative" style={{ width: size, height: size }}>
-      <svg viewBox="0 0 100 100" width={size} height={size}>
-        {index === 0 && (
-          <motion.path
-            d="M50 12 C 78 14, 90 38, 86 58 S 60 92, 40 86 S 10 62, 14 42 S 28 12, 50 12 Z"
-            fill="none"
-            stroke="var(--purple-deep)"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            strokeDasharray="4 6"
-            animate={{ rotate: active ? [0, 3, -2, 0] : 0 }}
-            transition={{ duration: 4, repeat: active ? Infinity : 0, ease: "easeInOut" }}
-            style={{ transformOrigin: "50% 50%" }}
-          />
-        )}
-        {index === 1 && (
-          <>
-            <circle cx="50" cy="50" r="34" fill="none" stroke="var(--purple-deep)" strokeWidth="1.4" strokeDasharray="2 4" />
-            <circle cx="50" cy="50" r="18" fill="var(--lilac)" opacity="0.6" />
-          </>
-        )}
-        {index === 2 && (
-          <>
-            <circle cx="50" cy="50" r="36" fill="none" stroke="var(--purple-deep)" strokeWidth="1.6" />
-            <circle cx="50" cy="50" r="22" fill="var(--purple)" opacity="0.55" />
-          </>
-        )}
-        {index === 3 && (
-          <circle cx="50" cy="50" r="38" fill="var(--purple-deep)" />
-        )}
-      </svg>
-    </div>
+    <>
+      <div className="relative md:hidden" style={{ width: mobileSize, height: mobileSize }}>
+        {glyphs(mobileSize)}
+      </div>
+      <div className="relative hidden md:block" style={{ width: desktopSize, height: desktopSize }}>
+        {glyphs(desktopSize)}
+      </div>
+    </>
   );
 }

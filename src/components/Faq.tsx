@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Plus } from "lucide-react";
 
 const ITEMS = [
   {
@@ -13,7 +12,7 @@ const ITEMS = [
   },
   {
     q: "Do you work on startups pre-funding?",
-    a: "Yes — I love pre-funding startups. As the founder of Techverse, I'm passionate about helping developers and entrepreneurs bring their ideas to life. Let's talk about the problem first, terms second.",
+    a: "Yes, I love pre-funding startups. As the founder of Techverse, I'm passionate about helping developers and entrepreneurs bring their ideas to life. Let's talk about the problem first, terms second.",
   },
   {
     q: "Are you available for freelance work?",
@@ -23,35 +22,54 @@ const ITEMS = [
 
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <div className="divide-y divide-[color:var(--border)]">
+    <div className="border-t border-[color:var(--border)]">
       {ITEMS.map((it, i) => {
         const isOpen = open === i;
         return (
-          <div key={it.q}>
+          <div key={it.q} className="border-b border-[color:var(--border)]">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-[color:var(--purple-deep)]"
+              className="group flex w-full items-start gap-8 py-9 text-left md:gap-16"
             >
-              <span className="font-display text-xl md:text-2xl">{it.q}</span>
-              <motion.span
-                animate={{ rotate: isOpen ? 45 : 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--purple-deep)]"
+              {/* index */}
+              <span className="mt-1 shrink-0 font-mono text-[0.68rem] text-[color:var(--warmgray)] opacity-40 transition-opacity duration-200 group-hover:opacity-70">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              {/* question */}
+              <span
+                className="flex-1 font-display leading-tight text-[color:var(--ink)] transition-colors duration-300 group-hover:text-[color:var(--purple-deep)]"
+                style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.75rem)" }}
               >
-                <Plus className="h-4 w-4" />
-              </motion.span>
+                {it.q}
+              </span>
+
+              {/* indicator */}
+              <span className="mt-1 shrink-0 font-mono text-sm text-[color:var(--purple-deep)] opacity-50 transition-all duration-300 group-hover:opacity-100">
+                <motion.span
+                  animate={{ rotate: isOpen ? 45 : 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block"
+                >
+                  +
+                </motion.span>
+              </span>
             </button>
+
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-6 pr-16 text-[color:var(--warmgray)]">{it.a}</p>
+                  <p className="pb-9 pl-14 pr-10 text-[0.97rem] leading-relaxed text-[color:var(--warmgray)] md:pl-24">
+                    {it.a}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>

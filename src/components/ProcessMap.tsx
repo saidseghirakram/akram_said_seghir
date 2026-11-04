@@ -14,14 +14,14 @@ const STAGES: Stage[] = [
   {
     n: "01",
     title: "Idea",
-    body: "Spotting a real problem worth solving — noisy scribbles on a napkin.",
+    body: "Spotting a real problem worth solving. Noisy scribbles on a napkin.",
     note: "// rough & unfiltered",
     projectId: "hackathon",
   },
   {
     n: "02",
     title: "Experiment",
-    body: "Rapid prototypes and honest signal — kill it fast or keep going.",
+    body: "Rapid prototypes and honest signal. Kill it fast or keep going.",
     note: "// test → learn → repeat",
     projectId: "ui-lab",
   },
@@ -92,7 +92,7 @@ export function ProcessMap() {
           <div className="mt-2 font-mono text-[10px] md:text-xs text-[color:var(--warmgray)]">
             {String(active + 1).padStart(2, "0")}
             <span className="mx-2 opacity-40">/</span>
-            {String(STAGES.length).padStart(2, "0")} — scroll to advance
+            {String(STAGES.length).padStart(2, "0")} · scroll to advance
           </div>
         </div>
 

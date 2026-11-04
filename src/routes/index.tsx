@@ -43,23 +43,23 @@ const SERVICES = [
 
 const TIMELINE = [
   {
-    date: "2023 — 2025",
-    label: "Master's in System Information (Software Engineering)",
+    date: "2023 · 2025",
+    label: "Master in System Information (Software Engineering)",
     body: "Pursuing advanced studies in software engineering and system information at University Yahia Fares, Médéa, Algeria.",
   },
   {
     date: "2023",
-    label: "Founder & Lead Organizer — Techverse",
-    body: "Established a tech club to organize workshops, mentor young developers, and foster a tech community in Algeria.",
+    label: "Founder & Lead Organizer at Techverse",
+    body: "Established a tech club to organize workshops, mentor young developers, and build a tech community in Algeria.",
   },
   {
-    date: "2021 — Present",
+    date: "2021 · Present",
     label: "Freelancer",
     body: "Developed multiple full-stack web and mobile apps for clients using modern frameworks and tools. Focused on delivering real value and business impact.",
   },
   {
-    date: "2020 — 2023",
-    label: "Bachelor's in System Information",
+    date: "2020 · 2023",
+    label: "Bachelor in System Information",
     body: "Graduated with a strong foundation in software systems and development at University Yahia Fares, Médéa, Algeria.",
   },
 ];
@@ -222,30 +222,43 @@ function Home() {
 
       {/* EXPERIENCE */}
       <section id="experience" className="py-32">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-6xl px-6">
           <Reveal>
             <div className="eyebrow">(02 / 08) — Experience</div>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="display-h mt-6 text-[clamp(2rem,5vw,4rem)]">A working timeline.</h2>
+            <h2 className="display-h mt-6 text-[clamp(2rem,5vw,4rem)]">
+              A working <span className="italic text-[color:var(--warmgray)]">timeline.</span>
+            </h2>
           </Reveal>
 
-          <div className="relative mt-16 pl-8 md:pl-14">
-            <div className="absolute bottom-0 left-2 top-2 w-px bg-gradient-to-b from-[color:var(--purple)] via-[color:var(--border)] to-transparent md:left-4" />
-            <div className="space-y-14">
-              {TIMELINE.map((t, i) => (
-                <Reveal key={i} delay={i * 0.06}>
-                  <div className="relative">
-                    <div className="absolute -left-[26px] top-2 h-3 w-3 rounded-full bg-[color:var(--purple-deep)] ring-4 ring-[color:var(--cream)] md:-left-[38px]" />
-                    <div className="card-cream p-8">
-                      <div className="eyebrow">{t.date}</div>
-                      <h3 className="mt-3 font-display text-2xl md:text-3xl">{t.label}</h3>
-                      <p className="mt-3 text-[color:var(--warmgray)]">{t.body}</p>
-                    </div>
+          <div className="mt-16 border-t border-[color:var(--border)]">
+            {TIMELINE.map((t, i) => (
+              <Reveal key={i} delay={i * 0.07}>
+                <div className="group grid border-b border-[color:var(--border)] py-10 md:grid-cols-[220px_1fr] md:gap-16 md:py-14">
+                  {/* left — date + index */}
+                  <div className="mb-5 flex items-start justify-between md:mb-0 md:flex-col md:justify-start">
+                    <div className="eyebrow leading-snug text-[color:var(--purple-deep)]">{t.date}</div>
+                    <span className="font-mono text-[0.68rem] text-[color:var(--warmgray)] opacity-40 md:mt-3">
+                      {String(i + 1).padStart(2, "0")} / {String(TIMELINE.length).padStart(2, "0")}
+                    </span>
                   </div>
-                </Reveal>
-              ))}
-            </div>
+
+                  {/* right — content */}
+                  <div>
+                    <h3
+                      className="font-display leading-tight text-[color:var(--ink)] transition-colors duration-300 group-hover:text-[color:var(--purple-deep)]"
+                      style={{ fontSize: "clamp(1.4rem, 2.8vw, 2rem)" }}
+                    >
+                      {t.label}
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-[0.97rem] leading-relaxed text-[color:var(--warmgray)]">
+                      {t.body}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

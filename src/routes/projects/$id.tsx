@@ -501,11 +501,11 @@ function FeaturesSection({ project }: { project: Project }) {
           {project.features!.map((feat, i) => {
             const Icon = FEATURE_ICONS[feat.icon] ?? Globe;
             return (
-              <Reveal key={feat.title} delay={i * 0.05}>
+              <Reveal key={feat.title} delay={i * 0.05} className="h-full">
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                  className="group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-white p-6 md:p-7"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--border)] bg-white p-6 md:p-7"
                 >
                   <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[color:var(--purple)]/6 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[color:var(--purple)]/12" />
                   <div className="relative">

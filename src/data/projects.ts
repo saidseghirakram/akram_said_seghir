@@ -132,7 +132,7 @@ export const PROJECTS: Project[] = [
       "The Algerian travel market lacked a unified mobile platform where users could search, book, pay, and manage their entire journey: flights, hotels, transfers, visas, and mobile recharge. All from one phone.",
     solution:
       "Architected and built the entire frontend platform from scratch as Lead Frontend Developer. A cross-platform mobile app (Android & iOS) with feature-based architecture spanning 8+ product lines, 90+ API routes, real-time support, a digital wallet, and multilingual support with RTL. Shipped to the App Store and Google Play.",
-    stack: ["React Native", "Zustand", "TanStack Query", "TypeScript", "WebRTC", "i18n"],
+    stack: ["React Native", "TypeScript", "iOS & Android"],
     impact:
       "A complete travel ecosystem in users' pockets, serving the Algerian market. One codebase, one team vision, one app for every travel need. Available on both App Store and Google Play.",
     gradient: "linear-gradient(135deg,#5b21b6 0%,#a855f7 35%,#f6f1e9 100%)",
@@ -208,16 +208,6 @@ export const PROJECTS: Project[] = [
     ],
     architecture: [
       {
-        label: "Feature-based Architecture",
-        detail:
-          "Modular code organization across flights, hotels, transfers, e-visa, wallet and support. Each feature is isolated and scalable in a cross-platform codebase.",
-      },
-      {
-        label: "Zustand + TanStack Query",
-        detail:
-          "Lightweight client state with Zustand, server state orchestrated via TanStack Query for optimal caching and synchronization across mobile sessions.",
-      },
-      {
         label: "90+ API Routes",
         detail:
           "Comprehensive API layer handling search, booking, payments, user management, push notifications, and real-time events.",
@@ -225,12 +215,12 @@ export const PROJECTS: Project[] = [
       {
         label: "Cross-platform Mobile-first UX",
         detail:
-          "Single React Native codebase for Android and iOS with touch-optimized interactions, onboarding, biometric auth flows, and adaptive layouts.",
+          "Single codebase for Android and iOS with touch-optimized interactions, onboarding, biometric auth flows, and adaptive layouts.",
       },
       {
         label: "Real-time Live Support",
         detail:
-          "In-app chat with AI support, Click-to-Call via WebRTC, push notifications, and instant agent connection.",
+          "In-app chat with AI support, click-to-call, push notifications, and instant agent connection.",
       },
       {
         label: "Multilingual + RTL",
@@ -393,7 +383,7 @@ export const PROJECTS: Project[] = [
       { value: "90+", label: "API Routes" },
       { value: "8+", label: "Product Lines" },
       { value: "3", label: "Languages" },
-      { value: "2", label: "Platforms" },
+      { value: "190+", label: "Screens" },
     ],
     live: "https://play.google.com/store/search?q=fennec+booking&c=apps",
     capabilities: [

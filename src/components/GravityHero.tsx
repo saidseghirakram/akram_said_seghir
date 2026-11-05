@@ -97,10 +97,16 @@ export function GravityHero() {
       });
       Composite.add(world, mc);
 
-      // Remove Matter.js wheel listener so the page scrollbar/wheel still works
-      sectionEl.removeEventListener("mousewheel", (mouse as any).mousewheel);
-      sectionEl.removeEventListener("DOMMouseScroll", (mouse as any).mousewheel);
-      sectionEl.removeEventListener("wheel", (mouse as any).mousewheel);
+      // Strip ALL scroll-blocking listeners Matter.js adds:
+      // wheel calls event.preventDefault() with passive:false → blocks desktop scroll
+      // touch* with passive:false → blocks touch/trackpad scroll
+      const m = mouse as any;
+      sectionEl.removeEventListener("wheel",      m.mousewheel);
+      sectionEl.removeEventListener("mousewheel", m.mousewheel);
+      sectionEl.removeEventListener("DOMMouseScroll", m.mousewheel);
+      sectionEl.removeEventListener("touchstart", m.mousedown);
+      sectionEl.removeEventListener("touchmove",  m.mousemove);
+      sectionEl.removeEventListener("touchend",   m.mouseup);
 
       Events.on(mc, "startdrag", () => { sectionEl.style.cursor = "grabbing"; });
       Events.on(mc, "enddrag",   () => { sectionEl.style.cursor = ""; });

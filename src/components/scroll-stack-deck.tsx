@@ -15,6 +15,7 @@ export interface ProjectItem {
   description: string;
   image: string;
   link?: string;
+  demo?: string;
   color: string;
   textColor?: string;
   /** Bullet-separated tags shown below the description */
@@ -115,7 +116,7 @@ function AnimatedCard({ project, index, totalCards, smoothProgress }: AnimatedCa
   const scale = useTransform(smoothProgress, keyframes.steps, keyframes.scale);
 
   const imgs = project.images?.length ? project.images : project.image ? [project.image] : [];
-  const isExternal = project.link?.startsWith("http");
+  const mockup = imgs[0];
 
   return (
     <motion.div
@@ -132,107 +133,86 @@ function AnimatedCard({ project, index, totalCards, smoothProgress }: AnimatedCa
     >
       <div
         style={{ backgroundColor: project.color }}
-        className="relative flex h-full w-full flex-col overflow-hidden rounded-3xl"
+        className="relative flex h-full w-full flex-col overflow-hidden rounded-3xl md:flex-row"
       >
-        {/* ── Top text section ── */}
-        <div className="flex shrink-0 items-start justify-between gap-6 px-8 pb-4 pt-8 md:px-14 md:pt-10">
-          {/* Left: eyebrow + headline + description + metrics */}
-          <div className="min-w-0 flex-1">
-            <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-black/40">
-              {project.tabTitle}
+        {/* ── TEXT ROW (mobile: top; desktop: left column) ── */}
+        <div
+          className="flex w-full shrink-0 flex-col items-center justify-start px-5 text-center md:w-[44%] md:items-start md:justify-center md:px-14 md:text-left"
+          style={{
+            paddingTop: "clamp(2rem,4vh,3rem)",
+            paddingBottom: "clamp(0.75rem,2vh,2rem)",
+          }}
+        >
+          {/* Eyebrow */}
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-black/40">
+            {project.tabTitle}
+          </p>
+          {/* Title */}
+          <h3 className="mt-3 font-display text-[clamp(1.5rem,2.5vw,2.4rem)] font-medium leading-[1.1] tracking-tight text-black">
+            {project.title}
+          </h3>
+          {/* Description — hidden on mobile to save space */}
+          <p className="mt-2 hidden text-[0.82rem] leading-relaxed text-black/55 md:block">
+            {project.description}
+          </p>
+          {/* Metrics — hidden on mobile */}
+          {project.metrics && project.metrics.length > 0 && (
+            <p className="mt-2 hidden font-mono text-[0.58rem] uppercase tracking-widest text-black/35 md:block">
+              {project.metrics.join("  ·  ")}
             </p>
-            <h3 className="mt-3 font-display text-[clamp(1.5rem,2.5vw,2.8rem)] font-medium leading-[1.1] tracking-tight text-black">
-              {project.title}
-            </h3>
-            <p className="mt-2.5 max-w-2xl text-[0.85rem] leading-relaxed text-black/55 md:text-sm">
-              {project.description}
-            </p>
-            {project.metrics && project.metrics.length > 0 && (
-              <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-black/35">
-                {project.metrics.join("  ·  ")}
-              </p>
+          )}
+          {/* CTAs */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 md:justify-start md:gap-2.5">
+            {project.link && (
+              <a
+                href={project.link}
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 rounded-full bg-[#0f0f0f] px-4 py-2 text-xs font-medium text-white transition-all duration-300 hover:bg-[#333] active:scale-95 md:px-5 md:py-2.5 md:text-sm"
+              >
+                Case study
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 rounded-full border border-black/20 bg-white/60 px-4 py-2 text-xs font-medium text-black/80 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:border-black/40 active:scale-95 md:px-5 md:py-2.5 md:text-sm"
+              >
+                Live demo
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
             )}
           </div>
-
-          {/* Right: View case study button */}
-          {project.link && (
-            <a
-              href={project.link}
-              target={isExternal ? "_blank" : undefined}
-              rel={isExternal ? "noopener noreferrer" : undefined}
-              onClick={(e) => e.stopPropagation()}
-              className="mt-1 shrink-0 inline-flex items-center gap-1.5 rounded-full bg-[#0f0f0f] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#333] active:scale-95"
-            >
-              View case study
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          )}
         </div>
 
-        {/* ── Flexible gap ── */}
-        <div className="flex-1 min-h-4" />
-
-        {/* ── Creative image display — full images, wave stagger, up to 6 ── */}
-        {imgs.length > 0 && (() => {
-          const shown = imgs.slice(0, 6);
-          const count = shown.length;
-          // Wave stagger pattern — repeats for 5-6 images
-          const slots = [
-            { y: 0,   rot: "-2deg",   z: 4 },
-            { y: -55, rot: "1deg",    z: 5 },
-            { y: -20, rot: "-1deg",   z: 4 },
-            { y: -50, rot: "2deg",    z: 3 },
-            { y: -10, rot: "-1.5deg", z: 4 },
-            { y: -45, rot: "1.5deg",  z: 3 },
-          ];
-          // Narrower images when showing more of them
-          const mw = count <= 3
-            ? "clamp(200px, 28vw, 360px)"
-            : count === 4
-              ? "clamp(180px, 23vw, 300px)"
-              : "clamp(150px, 18vw, 250px)";
-          const gap = count >= 5 ? 10 : 14;
-          return (
-            <div
-              className="flex items-end overflow-hidden px-8 pb-4 md:px-14"
-              style={{ height: "clamp(280px, 50vh, 400px)", gap: `${gap}px` }}
-            >
-              {shown.map((src, i) => {
-                const s = slots[i] ?? slots[i % slots.length];
-                return (
-                  <div
-                    key={i}
-                    className="shrink-0"
-                    style={{
-                      transform: `translateY(${s.y}px) rotate(${s.rot})`,
-                      zIndex: s.z,
-                      position: "relative",
-                    }}
-                  >
-                    <img
-                      src={src}
-                      alt=""
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      draggable={false}
-                      style={{
-                        maxHeight: "clamp(230px, 44vh, 360px)",
-                        maxWidth: mw,
-                        width: "auto",
-                        height: "auto",
-                        display: "block",
-                        borderRadius: "14px",
-                        boxShadow: "0 12px 44px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.09)",
-                      }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })()}
+        {/* ── IMAGE ROW (mobile: bottom; desktop: right column) ── */}
+        {mockup && (
+          <div className="relative flex min-h-0 flex-1 items-end justify-center overflow-hidden pb-0 md:overflow-visible">
+            <img
+              src={mockup}
+              alt=""
+              loading="eager"
+              decoding="async"
+              draggable={false}
+              style={{
+                maxWidth: "88%",
+                maxHeight: "115%",
+                width: "auto",
+                height: "auto",
+                display: "block",
+                filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.18)) drop-shadow(0 8px 16px rgba(0,0,0,0.12))",
+                transform: "translateY(4%)",
+              }}
+            />
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -295,9 +275,9 @@ export function ScrollStackDeck({
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 24,
-    mass: 0.15,
+    stiffness: 280,
+    damping: 32,
+    mass: 0.08,
     restDelta: 0.0001,
   });
 
@@ -337,11 +317,11 @@ export function ScrollStackDeck({
         ref={containerRef}
         aria-label="Stacked project showcase"
         className="relative w-full"
-        style={{ height: `${projects.length * 110}vh` }}
+        style={{ height: `${projects.length * 80}vh` }}
       >
         {/* sticky viewport: full-width, card anchored from top */}
-        <div className="pointer-events-none sticky top-0 flex h-screen min-h-screen w-full items-start justify-center px-4 pt-12">
-          <div className="pointer-events-auto relative h-[min(86vh,54rem)] w-full overflow-visible">
+        <div className="pointer-events-none sticky top-0 flex h-screen min-h-screen w-full items-start justify-center px-4 pt-20 md:pt-12">
+          <div className="pointer-events-auto relative h-[min(72vh,34rem)] w-full overflow-visible md:h-[min(86vh,54rem)]">
             {projects.map((project, index) => (
               <AnimatedCard
                 key={project.id}

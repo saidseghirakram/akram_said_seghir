@@ -61,7 +61,7 @@
   --purple-electric: #a855f7;
   --lilac: #e9d8fd;
 
-  --background: var(--cream);
+  --background: #fafafa;
   --foreground: var(--ink);
   --card: #fbf7ef;
   --card-foreground: var(--ink);
@@ -87,7 +87,7 @@
     border-color: var(--color-border);
   }
   html, body {
-    background-color: var(--cream);
+    background-color: var(--background);
     color: var(--ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -214,6 +214,21 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Infinite marquee */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@keyframes wave-path {
+  0%   { d: path("M0,20 C160,40 320,0 480,20 C640,40 800,0 960,20 C1120,40 1280,0 1440,20"); }
+  50%  { d: path("M0,20 C160,0 320,40 480,20 C640,0 800,40 960,20 C1120,0 1280,40 1440,20"); }
+  100% { d: path("M0,20 C160,40 320,0 480,20 C640,40 800,0 960,20 C1120,40 1280,0 1440,20"); }
 }
 
 /* Deterministic "live" motion for mock screenshots (gif-like loops) */

@@ -1,4 +1,4 @@
-export type Tab = "problem" | "solution" | "impact";
+﻿export type Tab = "problem" | "solution" | "impact";
 
 export type ProjectFeature = {
   icon: string;
@@ -123,8 +123,6 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-,
-,
 {
     id: "fennec",
     n: "02",
@@ -261,7 +259,7 @@ export const PROJECTS: Project[] = [
         device: "mobile",
         chapter: "Flights",
         title: "Results by price and time",
-        body: "Flight results list prices in DZD alongside duration and stops. A 16 900 DZD departure at 11:15 SSH, a 118 880 DZD option at 14:25, sorted and filterable by Price and Timing.",
+        body: "Flight results list prices alongside duration and stops. Each result shows the carrier, departure time, and total fare — sortable and filterable by price and timing.",
         image: "/projectsPhoto/fennecbooking/flightsearch.png",
       },
       {
@@ -283,21 +281,21 @@ export const PROJECTS: Project[] = [
         device: "mobile",
         chapter: "Hotels",
         title: "Search by city",
-        body: "Hotel results for Alger list real properties: Sheraton Club Des Pins (45 500 DZD/night), Hyatt Regency Algiers Airport (40 800 DZD/night), AZ Hotels Vague d'Or (37 300 DZD/night), Marriott Bab Ezzouar, each with a rating, refundability status, and per-night price.",
+        body: "Hotel results for a destination list properties with star ratings, nightly rates, refundability status and a photo — everything needed to compare and choose in one glance.",
         image: "/projectsPhoto/fennecbooking/hotelSearch.png",
       },
       {
         seed: 107,
         device: "mobile",
         title: "The Sheraton detail",
-        body: "Sheraton Club Des Pins, Club des Pins, Staoueli, Alger, 16101. Check-in September 8, check-out September 10, 2 Adults. Facilities, description and a night rate of 91 000 DZD for 2 nights.",
+        body: "Clicking a property opens its full detail view: location, photo gallery, amenities, available room types, check-in and check-out dates, and the total price for the stay.",
         image: "/projectsPhoto/fennecbooking/hotelDetails.png",
       },
       {
         seed: 108,
         device: "mobile",
         title: "Choose your room",
-        body: "Sheraton Club Des Pins: choose your room. Room Only at 91 000, Wi-Fi TV toiletries at 98 500, a 2-Adults Refundable option at 116 200 up to 152 000. Every price, capacity and perk listed side by side.",
+        body: "Room selection presents all available options side by side — room-only, bed and breakfast, and full-amenity rates, each showing capacity, included perks, and a clear per-night price so the choice is easy.",
         image: "/projectsPhoto/fennecbooking/selectRooms.png",
       },
       {
@@ -380,14 +378,14 @@ export const PROJECTS: Project[] = [
         seed: 119,
         device: "mobile",
         title: "My Bookings",
-        body: "My Bookings with Pending, Confirmed, and Cancelled tabs. Search by PNR or by date. ALG to CDG on 9 Sep 2026, B&B HOTEL Cergy Pierrelaye, PNR 1587516, 26 Aug 2026. All visible at once.",
+        body: "My Bookings groups all reservations into Pending, Confirmed and Cancelled tabs. Each booking shows the route, hotel or service, dates and reference number — searchable and manageable from one screen.",
         image: "/projectsPhoto/fennecbooking/myBookingPage.png",
       },
       {
         seed: 120,
         device: "mobile",
         title: "Notifications",
-        body: "A running feed of booking updates. Items added to trips with reference numbers (196857, 196832, 196670, 196631), hotels linked and itinerary changes pushed in real time.",
+        body: "A running feed of booking updates — new trips added, hotels linked, itinerary changes and status updates all pushed in real time so the traveler is always in the loop.",
         image: "/projectsPhoto/fennecbooking/notificationPage.png",
       },
     ],
@@ -397,7 +395,7 @@ export const PROJECTS: Project[] = [
       { value: "3", label: "Languages" },
       { value: "2", label: "Platforms" },
     ],
-    live: "https://play.google.com/store",
+    live: "https://play.google.com/store/search?q=fennec+booking&c=apps",
     capabilities: [
       "Unified booking hub with tickets, vouchers and sharing",
       "Digital ticket generation and download",
@@ -409,8 +407,6 @@ export const PROJECTS: Project[] = [
       "Onboarding flows and biometric authentication",
     ],
   },
-,
-,
 {
     id: "psych-ai",
     n: "03",
@@ -493,8 +489,6 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-,
-,
 {
     id: "dashboard-management",
     n: "04",
@@ -673,8 +667,6 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-,
-,
 {
     id: "driver-app",
     n: "06",
@@ -818,8 +810,6 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-,
-,
 {
     id: "devfest",
     n: "07",
@@ -874,8 +864,6 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-,
-,
 {
     id: "trips",
     n: "08",
@@ -944,8 +932,6 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-,
-,
 {
     id: "athar",
     n: "09",

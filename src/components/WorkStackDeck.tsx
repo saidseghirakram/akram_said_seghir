@@ -21,12 +21,10 @@ const DECK_ITEMS: ProjectItem[] = PROJECTS.filter((p) => !!p.coverImage).map((p)
   description: p.impact,
   image: p.coverImage!,
   link: `/projects/${p.id}`,
+  demo: p.live,
   color: TINTS[p.id] ?? "#EEE8F8",
   metrics: [p.meta?.role, p.meta?.platform, ...p.stack.slice(0, 3)].filter(Boolean) as string[],
-  images: p.showcase
-    ?.filter((s) => !!s.image)
-    .slice(0, 6)
-    .map((s) => s.image!),
+  images: [`/mockups/${p.id}.png`],
 }));
 
 export function WorkStackDeck() {

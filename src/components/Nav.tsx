@@ -1,31 +1,38 @@
+import { User, FolderOpen, Zap, Wrench, Mail } from "lucide-react";
+
 const LINKS = [
-  ["About", "#about"],
-  ["Work", "#work"],
-  ["Skills", "#skills"],
-  ["Services", "#services"],
-  ["Contact", "#contact"],
+  { label: "About",    href: "#about",    icon: User },
+  { label: "Work",     href: "#work",     icon: FolderOpen },
+  { label: "Skills",   href: "#skills",   icon: Zap },
+  { label: "Services", href: "#services", icon: Wrench },
+  { label: "Contact",  href: "#contact",  icon: Mail },
 ];
 
 export function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/30 bg-[color:var(--cream)]/50 backdrop-blur-xl backdrop-saturate-150">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-display text-xl tracking-tight text-[color:var(--ink)]">
-          Akram<span className="text-[color:var(--purple-deep)]">4</span>Dev
-        </a>
-        <nav className="hidden gap-8 md:flex">
-          {LINKS.map(([l, h]) => (
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-5">
+      <div className="flex items-center gap-1 rounded-full border border-[color:var(--border)] bg-[color:var(--cream)]/90 px-2 py-2 shadow-md backdrop-blur-xl">
+        {/* Nav links — icons always visible, text hidden on mobile */}
+        <nav className="flex items-center">
+          {LINKS.map(({ label, href, icon: Icon }) => (
             <a
-              key={h}
-              href={h}
-              className="text-sm text-[color:var(--warmgray)] transition-colors hover:text-[color:var(--purple-deep)]"
+              key={href}
+              href={href}
+              className="flex items-center gap-1.5 rounded-full px-2.5 py-2 md:px-3 text-sm text-[color:var(--warmgray)] transition-colors hover:bg-[color:var(--border)] hover:text-[color:var(--ink)]"
             >
-              {l}
+              <Icon className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden md:inline">{label}</span>
             </a>
           ))}
         </nav>
-        <a href="#contact" className="hidden md:inline-flex chip-lilac">
-          Available for work
+
+        {/* CTA — circle mail button */}
+        <a
+          href="#contact"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[color:var(--purple-deep)] text-white transition-opacity hover:opacity-90"
+          aria-label="Hire me"
+        >
+          <Mail className="h-4 w-4" />
         </a>
       </div>
     </header>
